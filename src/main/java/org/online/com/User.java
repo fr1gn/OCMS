@@ -1,9 +1,13 @@
 package org.online.com;
 
 public class User {
-    private int Userid;
+    private int userId;
     private String name;
     private String surname;
+    private String email;
+    private String password;
+    private String role;
+
 
     public void setSurname(String surname) {
         this.surname = surname;
@@ -20,7 +24,11 @@ public class User {
     public String getName() {
         return name;
     }
+    User() {
+
+    }
     public User(String name, String surname) {
+        this();
         setName(name);
         setSurname(surname);
     }
