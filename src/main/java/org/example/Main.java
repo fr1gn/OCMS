@@ -1,5 +1,4 @@
-package org.online;
-
+package org.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
