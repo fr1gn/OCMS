@@ -1,8 +1,13 @@
 package org.online.com;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 
 public class Course {
+    @Getter
+    @Setter
     private int courseId;
     private String courseName;
     private String instructor;
@@ -10,29 +15,4 @@ public class Course {
     private LocalDate startDate;
     private LocalDate endDate;
 
-    public int getCourseId() {
-        return courseId;
-    }
-
-
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public LocalDate getStartDate() {
-        return startDate;
-    }
 }
