@@ -17,7 +17,7 @@ public class Main {
         try {
             con = DriverManager.getConnection(conString, "postgres", "231608");
             statement = con.createStatement();
-            rs = statement.executeQuery("SELECT name, surname, age, gender, course FROM users");
+            rs = statement.executeQuery("SELECT name, surname, course FROM users");
         } catch (SQLException e) {
             System.out.println("connection error:" + e.getMessage());;
         }
