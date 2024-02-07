@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+//main
 public class Main {
     public static void main(String[] args) {
         String conString = "jdbc:postgresql://localhost:5432/simpledb";
