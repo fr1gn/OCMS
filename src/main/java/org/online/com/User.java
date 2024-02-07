@@ -1,6 +1,11 @@
 package org.online.com;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class User {
+    @Setter
+    @Getter
     private int userId;
     private String name;
     private String surname;
@@ -8,28 +13,7 @@ public class User {
     private String password;
     private String role;
 
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
     User() {
+    }
 
-    }
-    public User(String name, String surname) {
-        this();
-        setName(name);
-        setSurname(surname);
-    }
 }
