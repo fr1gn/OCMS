@@ -1,11 +1,17 @@
 package org.online.com;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class User {
-    @Setter
-    @Getter
+
     private int userId;
     private String name;
     private String surname;
@@ -13,7 +19,5 @@ public class User {
     private String password;
     private String role;
 
-    User() {
-    }
 
 }
