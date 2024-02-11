@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class CourseRepository implements ICourseRepository {
-    private final IDB db;  // Dependency Injection
+   private final IDB db;  // Dependency Injection
     public CourseRepository(IDB db) {
         this.db = db;
     }
