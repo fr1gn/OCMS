@@ -26,21 +26,20 @@ public class EnrollmentRepository implements IEnrollmentRepository {
 
         try {
             con = db.getConnection();
-            String sql = "SELECT id,,surname,gender FROM users";
+            String sql = "SELECT * FROM enrollments";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            List<Enrollment> users = new LinkedList<>();
+            List<Enrollment> enrollments = new LinkedList<>();
             while (rs.next()) {
-                Enrollment enrollment = new enrollment(rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getBoolean("gender"));
-
-                users.add(enrollment);
+                Enrollment enrollment = new Enrollment();
+                enrollment.setEnrollmentId(rs.getInt("enrollmentId"));
+                enrollment.setUserId(rs.getInt("userId"));
+                enrollment.setCourseId(rs.getInt("courseId"));
+                enrollments.add(enrollment);
             }
 
-            return users;
+            return enrollments;
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
         } finally {
