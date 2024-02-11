@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-
 @Setter
 @Getter
 @AllArgsConstructor
@@ -17,4 +15,9 @@ public class Course {
     private String courseName;
     private String instructor;
     private String description;
+
+    @Override
+    public String toString() {
+        return courseId + ": Course name:" + courseName + " instructor: " + instructor + " description: " + description;
+    }
 }
