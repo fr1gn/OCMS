@@ -26,7 +26,7 @@ public class EnrollmentRepository implements IEnrollmentRepository {
 
         try {
             con = db.getConnection();
-            String sql = "SELECT id,name,surname,gender FROM users";
+            String sql = "SELECT id,,surname,gender FROM users";
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
