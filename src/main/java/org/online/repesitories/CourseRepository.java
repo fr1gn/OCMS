@@ -41,7 +41,6 @@ public class CourseRepository implements ICourseRepository {
                 System.out.println("sql error: " + e.getMessage());
             }
         }
-
         return null;
     }
 
@@ -55,17 +54,17 @@ public class CourseRepository implements ICourseRepository {
             Statement st = con.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
-            List<Course> users = new LinkedList<>();
+            List<Course> courses = new LinkedList<>();
             while (rs.next()) {
-                Course user = new Course(rs.getInt("courseId"),
+                Course course = new Course(rs.getInt("courseId"),
                         rs.getString("courseName"),
                         rs.getString("instructor"),
                         rs.getString("description"));
 
-                users.add(user);
+                courses.add(course);
             }
 
-            return users;
+            return courses;
         } catch (SQLException e) {
             System.out.println("sql error: " + e.getMessage());
         } finally {

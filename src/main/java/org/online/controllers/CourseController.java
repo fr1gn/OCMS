@@ -2,7 +2,6 @@ package org.online.controllers;
 
 import org.online.com.Course;
 import org.online.repesitories.interfaces.ICourseRepository;
-
 import java.util.List;
 
 public class CourseController {
