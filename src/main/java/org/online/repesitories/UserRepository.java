@@ -56,29 +56,29 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> getAllUsers() {}
-    {}
+    public List<User> getAllUsers() {
+    {
     Connection con = null;
 
         try {
         con = db.getConnection();
-        String sql = "SELECT userId, firstName, lastName, email, password, role FROM courses";
+        String sql = "SELECT userId, firstName, lastName, email, password, role FROM users";
         Statement st = con.createStatement();
 
         ResultSet rs = st.executeQuery(sql);
-        List<User> Users = new LinkedList<>();
+        List<User> users = new LinkedList<>();
         while (rs.next()) {
-            User User = new User(rs.getInt("userId"),
+            User user = new User(rs.getInt("userId"),
                     rs.getString("firstName"),
                     rs.getString("lastName"),
                     rs.getString("email"),
                     rs.getString("password"),
                     rs.getString("role"));
 
-            Users.add(User);
+            users.add(user);
         }
 
-        return Users;
+        return users;
     } catch (SQLException e) {
         System.out.println("sql error: " + e.getMessage());
     } finally {
@@ -92,7 +92,7 @@ public class UserRepository implements IUserRepository {
 
         return null;
 }
-}
+
 
 
 
