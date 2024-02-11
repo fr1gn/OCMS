@@ -1,4 +1,4 @@
-package org.online.com.repesitories;
+package org.online.repesitories;
 
 public class IEnrollmentRepesitory {
 }
