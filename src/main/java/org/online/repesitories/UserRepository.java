@@ -1,4 +1,5 @@
 package org.online.repesitories;
+import org.online.com.Course;
 import org.online.com.User;
 import org.online.data.interfaces.IDB;
 import org.online.repesitories.interfaces.IUserRepository;
@@ -34,7 +35,7 @@ public class UserRepository implements IUserRepository {
 
                 ResultSet rs = st.executeQuery();
                 if (rs.next()) {
-                    return new user(rs.getInt("userId"),
+                    return new User(rs.getInt("userId"),
                             rs.getString("firstName"),
                             rs.getString("lastName"),
                             rs.getString("email"),
@@ -55,10 +56,43 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List<User> getAllUsers() {
-        Connection con = null
-        try{
-            con =
+    public List<User> getAllUsers() {}
+    {}
+    Connection con = null;
+
+        try {
+        con = db.getConnection();
+        String sql = "SELECT userId, firstName, lastName, email, password, role FROM courses";
+        Statement st = con.createStatement();
+
+        ResultSet rs = st.executeQuery(sql);
+        List<User> Users = new LinkedList<>();
+        while (rs.next()) {
+            User User = new User(rs.getInt("userId"),
+                    rs.getString("firstName"),
+                    rs.getString("lastName"),
+                    rs.getString("email"),
+                    rs.getString("password"),
+                    rs.getString("role"));
+
+            Users.add(User);
+        }
+
+        return Users;
+    } catch (SQLException e) {
+        System.out.println("sql error: " + e.getMessage());
+    } finally {
+        try {
+            if (con != null)
+                con.close();
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
+        }
+    }
+
+        return null;
+}
+}
 
 
 
