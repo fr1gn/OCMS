@@ -16,6 +16,19 @@ public class EnrollmentRepository implements IEnrollmentRepository {
 
     @Override
     public void enrollUserInCourse(int userId, int courseId) {
+        Connection con = null;
+
+        try {
+            con = db.getConnection();
+            String sql = "INSERT INTO enrollments (userId, courseId) VALUES (?, ?)";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setInt(1, userId);
+            st.setInt(2, courseId);
+            st.executeUpdate();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -52,15 +65,5 @@ public class EnrollmentRepository implements IEnrollmentRepository {
         }
 
         return null;
-    }
-
-    @Override
-    public void updateEnrollment(Enrollment enrollment) {
-
-    }
-
-    @Override
-    public void deleteEnrollment(int enrollmentId) {
-
     }
 }
