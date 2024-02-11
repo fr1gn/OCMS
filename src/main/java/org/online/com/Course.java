@@ -17,7 +17,4 @@ public class Course {
     private String courseName;
     private String instructor;
     private String description;
-    private LocalDate startDate;
-    private LocalDate endDate;
-
 }
