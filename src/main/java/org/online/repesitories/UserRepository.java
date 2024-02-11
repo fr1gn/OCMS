@@ -1,26 +1,16 @@
 package org.online.repesitories;
-
-import com.sun.jdi.connect.spi.Connection;
-import org.online.com.Course;
-import java.sql.*;
-import java.util.LinkedList;
-import java.util.List;
-import org.online.data.interfaces.IDB;
 import org.online.com.User;
 import org.online.data.interfaces.IDB;
 import org.online.repesitories.interfaces.IUserRepository;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.LinkedList;
 import java.util.List;
-
 public class UserRepository implements IUserRepository {
     private final IDB db;  // Dependency Injection
-    public CourseRepository(IDB db) {
+    public UserRepository(IDB db) {
         this.db = db;
     }
-}
+
 
 
 
@@ -35,7 +25,7 @@ public class UserRepository implements IUserRepository {
     public User getUser(int userId) {
             java.sql.Connection con = null;
 
-            try {s
+            try {
                 con = db.getConnection();
                 String sql = "SELECT userId, firstName, lastName, email, password, role FROM users WHERE userid=?";
                 PreparedStatement st = con.prepareStatement(sql);
