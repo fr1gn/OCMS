@@ -1,4 +1,4 @@
 package org.online.repesitories;
 
-public class UserRepesitory {
+public class UserRepository {
 }
