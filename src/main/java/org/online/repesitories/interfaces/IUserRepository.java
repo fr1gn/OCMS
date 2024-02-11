@@ -3,8 +3,7 @@ import org.online.com.User;
 
 import java.util.List;
 public interface IUserRepository {
-    // default operations for IUserrepository
-    User getUserById(int userId);
+    boolean createUser(User user);
+    User getUser(int userId);
     List<User> getAllUsers();
-
 }
