@@ -1,4 +1,4 @@
 package org.online.repesitories;
 
-public class ICourseRepesitory {
+public class EnrollmentRepesitory {
 }
