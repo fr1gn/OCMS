@@ -13,9 +13,10 @@ import lombok.Setter;
 public class User {
 
     private int userId;
-    private String name;
-    private String surname;
+    private String firstName;
+    private String LastName;
     private String email;
+    private String password;
     private String role;
 
 

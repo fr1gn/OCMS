@@ -1,5 +1,4 @@
 package org.online.repesitories;
-import org.online.com.Course;
 import org.online.com.User;
 import org.online.data.interfaces.IDB;
 import org.online.repesitories.interfaces.IUserRepository;
@@ -29,10 +28,21 @@ public class UserRepository implements IUserRepository {
             st.setString(3,user.getEmail());
             st.setString(4,user.getPassword());
             st.setString(5,user.getRole());
-            Return st.executeUpdate();
+            st.execute();
+            return true;
+
         } catch(SQLException e) {
-            e.printStackTrace();
+            System.out.println("sql error: " + e.getMessage());
+        } finally {
+            try {
+                if (con != null)
+                    con.close();
+            } catch (SQLException e) {
+                System.out.println("sql error: " + e.getMessage());
+            }
         }
+
+        return false;
     }
 
 
@@ -68,44 +78,44 @@ public class UserRepository implements IUserRepository {
                 }
             }
             return null;
-    }
+        }
 
     @Override
     public List<User> getAllUsers() {
-    {
-    Connection con = null;
+            Connection con = null;
 
-        try {
-        con = db.getConnection();
-        String sql = "SELECT userId, firstName, lastName, email, password, role FROM users";
-        Statement st = con.createStatement();
+            try {
+                con = db.getConnection();
+                String sql = "SELECT userId, firstName, lastName, email, password, role FROM users";
+                Statement st = con.createStatement();
 
-        ResultSet rs = st.executeQuery(sql);
-        List<User> users = new LinkedList<>();
-        while (rs.next()) {
-            User user = new User(rs.getInt("userId"),
-                    rs.getString("firstName"),
-                    rs.getString("lastName"),
-                    rs.getString("email"),
-                    rs.getString("password"),
-                    rs.getString("role"));
+                ResultSet rs = st.executeQuery(sql);
+                List<User> users = new LinkedList<>();
+                while (rs.next()) {
+                    User user = new User(rs.getInt("userId"),
+                            rs.getString("firstName"),
+                            rs.getString("lastName"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            rs.getString("role"));
 
-            users.add(user);
-        }
+                    users.add(user);
+                }
 
-        return users;
-    } catch (SQLException e) {
-        System.out.println("sql error: " + e.getMessage());
-    } finally {
-        try {
-            if (con != null)
-                con.close();
-        } catch (SQLException e) {
-            System.out.println("sql error: " + e.getMessage());
-        }
+                return users;
+            } catch (SQLException e) {
+                System.out.println("sql error: " + e.getMessage());
+            } finally {
+                try {
+                    if (con != null)
+                        con.close();
+                } catch (SQLException e) {
+                    System.out.println("sql error: " + e.getMessage());
+                }
+            }
+
+            return null;
     }
-
-        return null;
 }
 
 
