@@ -33,7 +33,7 @@ public class MyApplication {
             System.out.println("0. Exit");
             System.out.println();
             try {
-                System.out.print("Enter option (1-4): ");
+                System.out.print("Enter option (1-6): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
                     getAllUsersMenu();
@@ -45,7 +45,7 @@ public class MyApplication {
                     getAllCoursesMenu();
                 } else if (option == 5) {
                     getCourseByIdMenu();
-                } else if (option == 6){
+                } else if (option == 6) {
                     getAllEnrollmentsMenu();
                 } else {
                     break;
@@ -53,8 +53,7 @@ public class MyApplication {
             } catch (InputMismatchException e) {
                 System.out.println("Input must be integer: " + e);
                 scanner.nextLine(); // to ignore incorrect input
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
@@ -107,6 +106,10 @@ public class MyApplication {
     public void getAllEnrollmentsMenu() {
         String response = controller_3.getAllEnrollments();
         System.out.println(response);
+    }
+
+    public void enrollUserInCourseMenu(){
+
     }
 
 }
