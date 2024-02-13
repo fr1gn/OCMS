@@ -30,10 +30,11 @@ public class MyApplication {
             System.out.println("4. Get all courses");
             System.out.println("5. Get course by id");
             System.out.println("6. Get all enrollments");
+            System.out.println("7. Enroll User in Course");
             System.out.println("0. Exit");
             System.out.println();
             try {
-                System.out.print("Enter option (1-6): ");
+                System.out.print("Enter option (1-7): ");
                 int option = scanner.nextInt();
                 if (option == 1) {
                     getAllUsersMenu();
@@ -47,6 +48,8 @@ public class MyApplication {
                     getCourseByIdMenu();
                 } else if (option == 6) {
                     getAllEnrollmentsMenu();
+                } else if (option == 7) {
+                    enrollUserInCourseMenu();
                 } else {
                     break;
                 }
@@ -109,6 +112,13 @@ public class MyApplication {
     }
 
     public void enrollUserInCourseMenu(){
+        System.out.println("Please enter user id:");
+        int userId = scanner.nextInt();
+        System.out.println("Please enter course id:");
+        int courseId = scanner.nextInt();
+
+        String response = controller_3.enrollUserInCourse(userId,courseId);
+        System.out.println(response);
 
     }
 
