@@ -33,6 +33,7 @@ public class MyApplication {
             System.out.println("7. Enroll User in Course");
             System.out.println("0. Exit");
             System.out.println();
+
             try {
                 System.out.print("Enter option (1-7): ");
                 int option = scanner.nextInt();
@@ -53,14 +54,16 @@ public class MyApplication {
                 } else {
                     break;
                 }
+
             } catch (InputMismatchException e) {
                 System.out.println("Input must be integer: " + e);
                 scanner.nextLine(); // to ignore incorrect input
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
 
-            System.out.println("*************************");
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         }
     }
 
@@ -71,7 +74,6 @@ public class MyApplication {
 
     public void getUserByIdMenu() {
         System.out.println("Please enter id");
-
         int id = scanner.nextInt();
         String response = controller.getUser(id);
         System.out.println(response);
@@ -95,7 +97,6 @@ public class MyApplication {
 
     public void getCourseByIdMenu() {
         System.out.println("Please enter course id:");
-
         int id = scanner.nextInt();
         String response = controller_2.getCourse(id);
         System.out.println(response);
@@ -121,5 +122,4 @@ public class MyApplication {
         System.out.println(response);
 
     }
-
 }

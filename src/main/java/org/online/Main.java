@@ -1,4 +1,9 @@
 package org.online;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.online.data.interfaces.IDB;
 import org.online.data.PostgresDB;
 import org.online.repesitories.interfaces.IUserRepository;
