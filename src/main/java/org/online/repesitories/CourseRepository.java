@@ -21,7 +21,6 @@ public class CourseRepository implements ICourseRepository {
             con = db.getConnection();
             String sql = "SELECT courseId, courseName, instructor, description FROM courses WHERE id=?";
             PreparedStatement st = con.prepareStatement(sql);
-
             st.setInt(1, courseId);
 
             ResultSet rs = st.executeQuery();
@@ -75,7 +74,6 @@ public class CourseRepository implements ICourseRepository {
                 System.out.println("sql error: " + e.getMessage());
             }
         }
-
         return null;
     }
 }

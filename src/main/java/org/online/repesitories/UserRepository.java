@@ -7,11 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 public class UserRepository implements IUserRepository {
     private final IDB db;  // Dependency Injection
+
     public UserRepository(IDB db) {
         this.db = db;
     }
-
-
 
 
     @Override
@@ -23,16 +22,15 @@ public class UserRepository implements IUserRepository {
             String sql = "INSERT INTO users (firstName, LastName, email, password, role) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
 
-            st.setString(1,user.getFirstName());
-            st.setString(2,user.getLastName());
-            st.setString(3,user.getEmail());
-            st.setString(4,user.getPassword());
-            st.setString(5,user.getRole());
-            st.execute();
-            return true;
+            st.setString(1, user.getFirstName());
+            st.setString(2, user.getLastName());
+            st.setString(3, user.getEmail());
+            st.setString(4, user.getPassword());
+            st.setString(5, user.getRole());
+            st.executeUpdate();
 
-        } catch(SQLException e) {
-            System.out.println("sql error: " + e.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (con != null)
@@ -47,41 +45,42 @@ public class UserRepository implements IUserRepository {
 
 
 
-        @Override
+    @Override
     public User getUser(int userId) {
-            java.sql.Connection con = null;
+        java.sql.Connection con = null;
 
+        try {
+            con = db.getConnection();
+            String sql = "SELECT userId, firstName, lastName, email, password, role FROM users WHERE userid=?";
+            PreparedStatement st = con.prepareStatement(sql);
+
+            st.setInt(1, userId);
+
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new User(
+                        rs.getString("firstName"),
+                        rs.getString("LastName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("role"));
+            }
+        } catch (SQLException e) {
+            System.out.println("sql error: " + e.getMessage());
+        } finally {
             try {
-                con = db.getConnection();
-                String sql = "SELECT userId, firstName, lastName, email, password, role FROM users WHERE userid=?";
-                PreparedStatement st = con.prepareStatement(sql);
-
-                st.setInt(1, userId);
-
-                ResultSet rs = st.executeQuery();
-                if (rs.next()) {
-                    return new User(rs.getInt("userId"),
-                            rs.getString("firstName"),
-                            rs.getString("lastName"),
-                            rs.getString("email"),
-                            rs.getString("password"),
-                            rs.getString("role"));
-                }
+                if (con != null)
+                    con.close();
             } catch (SQLException e) {
                 System.out.println("sql error: " + e.getMessage());
-            } finally {
-                try {
-                    if (con != null)
-                        con.close();
-                } catch (SQLException e) {
-                    System.out.println("sql error: " + e.getMessage());
-                }
             }
-            return null;
         }
+        return null;
+    }
 
     @Override
     public List<User> getAllUsers() {
+        {
             Connection con = null;
 
             try {
@@ -92,7 +91,7 @@ public class UserRepository implements IUserRepository {
                 ResultSet rs = st.executeQuery(sql);
                 List<User> users = new LinkedList<>();
                 while (rs.next()) {
-                    User user = new User(rs.getInt("userId"),
+                    User user = new User(
                             rs.getString("firstName"),
                             rs.getString("lastName"),
                             rs.getString("email"),
@@ -115,6 +114,7 @@ public class UserRepository implements IUserRepository {
             }
 
             return null;
+        }
     }
 }
 
