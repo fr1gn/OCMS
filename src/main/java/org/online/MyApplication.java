@@ -22,7 +22,7 @@ public class MyApplication {
     public void start() {
         while (true) {
             System.out.println();
-            System.out.println("Welcome to My Application");
+            System.out.println("Welcome to Online Course Management System!");
             System.out.println("Select option:");
             System.out.println("1. Get all users");
             System.out.println("2. Get user by id");
