@@ -7,15 +7,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MyApplication {
-    private final UserController controller;
-    private final CourseController controller_2;
-    private final EnrollmentController controller_3;
+    private final UserController controller_u;
+    private final CourseController controller_c;
+    private final EnrollmentController controller_e;
     private final Scanner scanner;
 
     public MyApplication(UserController controller, CourseController controller2, EnrollmentController controller3) {
-        this.controller = controller;
-        controller_2 = controller2;
-        controller_3 = controller3;
+        this.controller_u = controller;
+        controller_c = controller2;
+        controller_e = controller3;
         scanner = new Scanner(System.in);
     }
 
@@ -68,14 +68,14 @@ public class MyApplication {
     }
 
     public void getAllUsersMenu() {
-        String response = controller.getAllUsers();
+        String response = controller_u.getAllUsers();
         System.out.println(response);
     }
 
     public void getUserByIdMenu() {
         System.out.println("Please enter id");
         int id = scanner.nextInt();
-        String response = controller.getUser(id);
+        String response = controller_u.getUser(id);
         System.out.println(response);
     }
 
@@ -91,24 +91,24 @@ public class MyApplication {
         System.out.println("Please enter your role:");
         String role = scanner.next();
 
-        String response = controller.createUser(firstName, LastName, email, password, role);
+        String response = controller_u.createUser(firstName, LastName, email, password, role);
         System.out.println(response);
     }
 
     public void getCourseByIdMenu() {
         System.out.println("Please enter course id:");
         int id = scanner.nextInt();
-        String response = controller_2.getCourse(id);
+        String response = controller_c.getCourse(id);
         System.out.println(response);
     }
 
     public void getAllCoursesMenu() {
-        String response = controller_2.getAllCourses();
+        String response = controller_c.getAllCourses();
         System.out.println(response);
     }
 
     public void getAllEnrollmentsMenu() {
-        String response = controller_3.getAllEnrollments();
+        String response = controller_e.getAllEnrollments();
         System.out.println(response);
     }
 
@@ -118,7 +118,7 @@ public class MyApplication {
         System.out.println("Please enter course id:");
         int courseId = scanner.nextInt();
 
-        String response = controller_3.enrollUserInCourse(userId,courseId);
+        String response = controller_e.enrollUserInCourse(userId,courseId);
         System.out.println(response);
 
     }
