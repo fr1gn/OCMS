@@ -13,4 +13,9 @@ public class Enrollment {
     private int enrollmentId;
     private int userId;
     private int courseId;
+
+    @Override
+    public String toString() {
+        return "User: " + userId + " was enrolled for the course: " + courseId;
+    }
 }
