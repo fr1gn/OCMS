@@ -18,7 +18,7 @@ public class CourseRepository implements ICourseRepository {
 
         try {
             con = db.getConnection();
-            String sql = "SELECT courseId, courseName, instructor, description FROM courses WHERE id=?";
+            String sql = "SELECT courseId, courseName, instructor, description FROM courses WHERE courseId=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setInt(1, courseId);
 
